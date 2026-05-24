@@ -1,0 +1,23 @@
+# ==============================================================================
+# AIVerse Nexus — Prometheus Scraper Telemetry Configurations
+# Targets: FastAPI /metrics OpenMetrics Endpoint
+# ==============================================================================
+
+global:
+  scrape_interval: 5s     # Scrape metrics every 5 seconds (fast response for AI latency grids)
+  evaluation_interval: 5s # Check alerts rules every 5 seconds
+
+# Dynamic alert definitions
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            # - localhost:9093
+
+# Scrape config configurations
+scrape_configs:
+  # The aiverse-nexus task exposes latencies and drift indices
+  - job_name: "aiverse-nexus-backend"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["127.0.0.1:8000"] # Direct connection to FastAPI uvicorn port
