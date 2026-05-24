@@ -1,3 +1,5 @@
+import sys
+import os
 import time
 import random
 import hashlib
@@ -6,6 +8,9 @@ from fastapi import FastAPI, HTTPException, Header, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import numpy as np
+
+# Dynamic path injection for distributed cloud environments and Streamlit deployments
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import our custom ML models & pipeline stages
 from src.pipeline.generator import DatasetGenerator

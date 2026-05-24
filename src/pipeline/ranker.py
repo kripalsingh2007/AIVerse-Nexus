@@ -1,4 +1,10 @@
+import sys
+import os
 import numpy as np
+
+# Dynamic path injection for distributed cloud environments and Streamlit deployments
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 from src.models.two_tower import HAS_TORCH
 
 class DeepRankingStage:
